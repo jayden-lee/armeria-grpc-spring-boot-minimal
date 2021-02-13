@@ -1,9 +1,19 @@
 spring:
   main:
     web-application-type: none
+  application:
+    name: armeria-example
 
 armeria:
   ports:
     - port: 8080
       protocols:
         - http
+
+management:
+  metrics:
+    export:
+      statsd:
+        enabled: true
+        flavor: telegraf
+        polling-frequency: 5s

@@ -31,6 +31,10 @@ dependencies {
 
     runtimeOnly "com.linecorp.armeria:armeria-spring-boot2-actuator-starter:${armeriaVersion}"
 
+    // micrometer
+    implementation("io.micrometer:micrometer-core")
+    implementation("io.micrometer:micrometer-registry-statsd")
+
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
