@@ -1,0 +1,60 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'com.google.protobuf' version '0.8.15'
+}
+
+group = 'com.jayden'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+def grpcVersion = '1.35.0'
+def protobufVersion = '3.12.0'
+def protocVersion = protobufVersion
+def armeriaVersion = '1.4.0'
+
+dependencies {
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+
+    implementation "com.linecorp.armeria:armeria-spring-boot2-starter:${armeriaVersion}"
+
+    implementation 'org.hibernate.validator:hibernate-validator'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    runtimeOnly "com.linecorp.armeria:armeria-spring-boot2-actuator-starter:${armeriaVersion}"
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
+    }
+    generateProtoTasks {
+        ofSourceSet('main')*.plugins {
+            grpc {}
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}

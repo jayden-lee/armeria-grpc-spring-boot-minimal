@@ -1,0 +1,9 @@
+spring:
+  main:
+    web-application-type: none
+
+armeria:
+  ports:
+    - port: 8080
+      protocols:
+        - http
