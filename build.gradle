@@ -22,6 +22,7 @@ dependencies {
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
 
+    implementation "com.linecorp.armeria:armeria-grpc:${armeriaVersion}"
     implementation "com.linecorp.armeria:armeria-spring-boot2-starter:${armeriaVersion}"
 
     implementation 'org.hibernate.validator:hibernate-validator'
